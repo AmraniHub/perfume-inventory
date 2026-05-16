@@ -54,14 +54,6 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 #loginBtn:hover{background:#1e5cbd}
 #loginError{color:#dc2626;font-size:13px;margin-top:10px;min-height:18px}
 
-/* Activate push panel */
-#activatePanel{display:none;background:#1a1a0a;border:1px solid #5a4a00;border-radius:14px;padding:16px 20px;margin-bottom:14px}
-#activatePanel p{font-size:13px;color:#d4a800;margin-bottom:10px}
-#activatePanel code{background:#111;padding:3px 8px;border-radius:6px;font-size:12px;color:#aaa;user-select:all}
-.token-row{display:flex;gap:8px;margin-top:10px}
-#tokenInput{flex:1;padding:10px;border-radius:10px;border:1px solid #5a4a00;background:#111;color:#fff;font-size:13px}
-#saveTokenBtn{padding:10px 20px;border-radius:10px;border:none;background:#b8860b;color:#fff;font-weight:bold;cursor:pointer;white-space:nowrap}
-#saveTokenBtn:hover{background:#d4a017}
 </style>
 </head>
 <body>
@@ -77,15 +69,6 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
   </div>
 </div>
 
-<!-- Activate push panel — shown only when no token is saved -->
-<div id="activatePanel">
-  <p>⚠️ <b>Push not activated on this device.</b> Paste your GitHub token below to enable saving. One time only — it stays saved forever.</p>
-  <p style="color:#888;font-size:12px;margin-bottom:4px">Get your token: open PowerShell / Terminal and run → <code>gh auth token</code> — then copy and paste it here.</p>
-  <div class="token-row">
-    <input id="tokenInput" type="password" placeholder="Paste token here (ghp_... or gho_...)">
-    <button id="saveTokenBtn" onclick="saveToken()">Activate Push</button>
-  </div>
-</div>
 
 <!-- ═══════ MAIN APP ═══════ -->
 <h1>Perfume Inventory Organizer</h1>
@@ -146,21 +129,16 @@ const GH_RAW   = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/main`
 const GH_API   = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents`;
 const COLUMNS  = ['all','homme','femme','mixte'];
 
-let ghToken = localStorage.getItem('gh_token') || '';
+let ghToken = '';
+const TOKEN_URL = 'https://gist.githubusercontent.com/AmraniHub/6adc784a083af28892120afa66a7f099/raw/key.txt';
 
-// ═══════ ACTIVATE PUSH PANEL ═══════
-function checkTokenPanel() {
-  document.getElementById('activatePanel').style.display = ghToken ? 'none' : 'block';
+async function loadToken() {
+  try {
+    const r = await fetch(TOKEN_URL + '?t=' + Date.now());
+    if (r.ok) ghToken = (await r.text()).trim();
+  } catch(e) { console.warn('Token load failed:', e.message); }
 }
 
-function saveToken() {
-  const t = document.getElementById('tokenInput').value.trim();
-  if (!t) { alert('Please paste your token first.'); return; }
-  ghToken = t;
-  localStorage.setItem('gh_token', t);
-  document.getElementById('activatePanel').style.display = 'none';
-  setSyncStatus('Push activated ✓ — now click Push to Cloud!', 'ok');
-}
 
 // ═══════ STATUS ═══════
 function setSyncStatus(msg, state) {
@@ -215,7 +193,7 @@ async function uploadImage(base64DataUrl, cardId) {
 
 // ═══════ PUSH TO CLOUD ═══════
 async function pushToCloud() {
-  if (!ghToken) { checkTokenPanel(); setSyncStatus('Paste your token in the yellow box above to activate push.', 'error'); return; }
+  if (!ghToken) { setSyncStatus('Loading credentials... try again in a second.', 'error'); loadToken(); return; }
 
   const cards = document.querySelectorAll('.card');
   if (!cards.length) { setSyncStatus('No products to push.', 'error'); return; }
@@ -300,7 +278,7 @@ async function loadAllProducts() {
 
 // ═══════ RESTORE PREVIOUS ═══════
 async function restorePrevious() {
-  if (!ghToken) { checkTokenPanel(); return; }
+  if (!ghToken) { setSyncStatus('Loading credentials... try again in a second.', 'error'); loadToken(); return; }
   if (!confirm('Restore the previous version from cloud? Current data will be replaced.')) return;
   setSyncStatus('Restoring previous version...', 'loading');
   try {
@@ -580,7 +558,7 @@ document.getElementById('search').addEventListener('input', (e) => {
 
 // ═══════ INIT ═══════
 async function startApp() {
-  checkTokenPanel();
+  await loadToken();
   loadData();
   saveState();
   await pullFromCloud(true);
