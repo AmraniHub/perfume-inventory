@@ -271,7 +271,8 @@ async function pushToCloud() {
 
 // ═══════ LOAD ALL 89 PRODUCTS FROM GITHUB ═══════
 async function loadAllProducts() {
-  if (!confirm('This will load all 89 products. Existing cards will stay. Continue?')) return;
+  if (!confirm('This will clear current cards and load all 89 products fresh. Continue?')) return;
+  document.querySelectorAll('.dropzone').forEach(z => z.innerHTML = '');
   setSyncStatus('Loading products...', 'loading');
   try {
     // Fetch the products list from raw URL — no token needed
