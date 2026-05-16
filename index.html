@@ -286,15 +286,7 @@ async function pushToCloud() {
     autoSave();
     setSyncStatus('All ' + done + ' products saved to cloud ✓', 'ok');
   } catch(e) {
-    if (e.message && e.message.includes('401')) {
-      ghToken = '';
-      localStorage.removeItem('gh_token');
-      pendingPush = true;
-      document.getElementById('modal').style.display = 'flex';
-      setSyncStatus('Token invalid — please re-enter', 'error');
-    } else {
-      setSyncStatus('Save failed: ' + e.message, 'error');
-    }
+    setSyncStatus('Save failed: ' + e.message, 'error');
   }
 }
 
