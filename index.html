@@ -317,7 +317,10 @@ async function pullFromCloud(silent=false) {
       return;
     }
     const data = await r.json();
-    if (!data || !Object.keys(data).length) { setSyncStatus('Cloud is empty.', 'error'); return; }
+    if (!data || !Object.keys(data).length) {
+      if (!silent) setSyncStatus('Cloud is empty — push your products first.', 'error');
+      return;
+    }
 
     document.querySelectorAll('.dropzone').forEach(z => z.innerHTML = '');
     Object.entries(data).forEach(([id, item]) => {
