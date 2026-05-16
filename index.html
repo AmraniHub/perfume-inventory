@@ -454,12 +454,32 @@ function duplicateCard(btn)  {
     c.querySelector('.price').value, generateId(), c.querySelector('.status').value);
   saveState();
 }
-function downloadImage(btn)  {
-  const c = btn.closest('.card');
-  const a = document.createElement('a');
-  a.href = c.querySelector('img').src;
-  a.download = (c.querySelector('.name').value || 'perfume') + '.jpg';
-  a.click();
+async function downloadImage(btn) {
+  const c    = btn.closest('.card');
+  const name = (c.querySelector('.name').value || 'perfume').trim();
+  const src  = c.querySelector('img').src;
+  btn.textContent = '...';
+  btn.disabled = true;
+  try {
+    const resp = await fetch(src);
+    const blob = await resp.blob();
+    const ext  = blob.type.includes('png') ? '.png' : '.jpg';
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = name + ext;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+  } catch(e) {
+    // fallback for base64 images
+    const a    = document.createElement('a');
+    a.href     = src;
+    a.download = name + '.jpg';
+    a.click();
+  } finally {
+    btn.textContent = 'Download';
+    btn.disabled = false;
+  }
 }
 
 // ═══════ STATS ═══════
@@ -586,12 +606,19 @@ async function startApp() {
 }
 
 window.onload = () => {
+  // Read token from URL hash if passed via setup.html (e.g. #init=TOKEN)
+  const hash = window.location.hash;
+  if (hash.startsWith('#init=')) {
+    const t = decodeURIComponent(hash.slice(6));
+    if (t) { ghToken = t; localStorage.setItem('gh_token', t); }
+    history.replaceState(null, '', window.location.pathname); // clean URL
+  }
+
   const session = localStorage.getItem('prf_session');
   if (session && CODES[session]) {
     document.getElementById('loginScreen').style.display = 'none';
     startApp();
   } else {
-    // Show login, focus input
     document.getElementById('loginInput').focus();
   }
 };
