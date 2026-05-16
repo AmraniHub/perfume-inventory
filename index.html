@@ -40,62 +40,42 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 #syncStatus.loading{color:#f59e0b}
 #syncStatus.ok{color:#16a34a}
 #syncStatus.error{color:#dc2626}
-#repoLabel{font-size:12px;color:#555;margin-left:auto}
 
-/* Modal overlay */
-#modal{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;display:flex;align-items:center;justify-content:center}
-.modal-box{background:#181818;border:1px solid #333;border-radius:20px;padding:32px;max-width:580px;width:92%;max-height:90vh;overflow-y:auto}
-.modal-box h2{margin-bottom:6px;font-size:20px}
+/* Token modal */
+#modal{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;display:none;align-items:center;justify-content:center}
+.modal-box{background:#181818;border:1px solid #333;border-radius:20px;padding:32px;max-width:500px;width:92%}
+.modal-box h2{margin-bottom:8px;font-size:20px}
 .modal-box p{color:#999;font-size:13px;line-height:1.7;margin-bottom:16px}
-.steps{background:#111;border-radius:12px;padding:16px;font-size:13px;color:#ccc;line-height:2.1;margin-bottom:18px}
+.steps{background:#111;border-radius:12px;padding:14px;font-size:13px;color:#ccc;line-height:2.1;margin-bottom:16px}
 .steps b{color:#fff}
-.steps a{color:#7eb8f7;text-decoration:none}
-.modal-box label{display:block;font-size:12px;color:#888;margin-bottom:4px;margin-top:12px}
+.modal-box label{display:block;font-size:12px;color:#888;margin-bottom:4px}
 .modal-box input{width:100%;padding:10px;border-radius:8px;border:1px solid #333;background:#111;color:#fff;font-size:13px}
-.modal-btn{width:100%;padding:13px;border-radius:12px;border:none;background:#1a4fa8;color:#fff;font-size:15px;cursor:pointer;margin-top:16px;font-weight:bold}
+.modal-btn{width:100%;padding:13px;border-radius:12px;border:none;background:#1a4fa8;color:#fff;font-size:15px;cursor:pointer;margin-top:14px;font-weight:bold}
 .modal-btn:hover{background:#1e5cbd}
-.modal-skip{width:100%;padding:9px;border-radius:10px;border:1px solid #333;background:transparent;color:#666;font-size:13px;cursor:pointer;margin-top:8px}
+.modal-close{width:100%;padding:9px;border-radius:10px;border:1px solid #333;background:transparent;color:#666;font-size:13px;cursor:pointer;margin-top:8px}
 </style>
 </head>
 <body>
 
-<!-- ═══════════ GITHUB SETUP MODAL ═══════════ -->
+<!-- Token modal (only needed to PUSH / save changes) -->
 <div id="modal">
   <div class="modal-box">
-    <h2>Connect GitHub — Free Cloud Sync</h2>
-    <p>Your products and images will be saved in a GitHub repository. 100% free, no credit card, no billing ever.</p>
-
+    <h2>Enter GitHub Token to Save</h2>
+    <p>Viewing is free and needs no token. To <b>save / push changes</b> you need a GitHub Personal Access Token.</p>
     <div class="steps">
-      <b>Step 1 — Create a GitHub account</b><br>
-      Go to <a href="https://github.com/signup" target="_blank">github.com/signup</a> (free)<br><br>
-
-      <b>Step 2 — Create a new repository</b><br>
-      Click <b>+</b> → <b>New repository</b> → name it <b>perfume-inventory</b> → set to <b>Public</b> → <b>Create repository</b><br><br>
-
-      <b>Step 3 — Create an Access Token</b><br>
-      Profile picture → <b>Settings</b> → scroll down → <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Tokens (classic)</b> → <b>Generate new token (classic)</b><br>
-      Check <b>repo</b> checkbox → scroll down → <b>Generate token</b> → <b>copy the token immediately</b><br><br>
-
-      <b>Step 4 — Enable GitHub Pages</b><br>
-      In your repo → <b>Settings</b> → <b>Pages</b> → Source: <b>Deploy from a branch</b> → Branch: <b>main</b> → Save<br>
-      Your site will be at: <code>https://YOUR-USERNAME.github.io/perfume-inventory</code>
+      <b>How to get a token (one time):</b><br>
+      1. Go to GitHub → Profile photo → Settings<br>
+      2. Developer settings → Personal access tokens → Tokens (classic)<br>
+      3. Generate new token → check <b>repo</b> → Generate → Copy it
     </div>
-
-    <label>GitHub Username</label>
-    <input id="cfg_owner" placeholder="your-github-username">
-
-    <label>Repository Name</label>
-    <input id="cfg_repo" placeholder="perfume-inventory">
-
     <label>Personal Access Token</label>
     <input id="cfg_token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-
-    <button class="modal-btn" onclick="saveConfig()">Save & Connect</button>
-    <button class="modal-skip" onclick="skipSetup()">Skip — use local only (no cloud sync)</button>
+    <button class="modal-btn" onclick="saveToken()">Save Token & Push</button>
+    <button class="modal-close" onclick="closeModal()">Cancel</button>
   </div>
 </div>
 
-<!-- ═══════════ MAIN APP ═══════════ -->
+<!-- ═══════ MAIN APP ═══════ -->
 <h1>Perfume Inventory Organizer</h1>
 
 <div class="topbar">
@@ -110,9 +90,8 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 <div class="sync-bar">
   <button class="btn-push" onclick="pushToCloud()">☁️ Push to Cloud</button>
   <button class="btn-pull" onclick="pullFromCloud()">⬇️ Pull from Cloud</button>
-  <button class="btn-cfg"  onclick="openSettings()">⚙️ Settings</button>
+  <button class="btn-cfg"  onclick="clearToken()">🔑 Change Token</button>
   <span id="syncStatus"></span>
-  <span id="repoLabel"></span>
 </div>
 
 <div class="stats">
@@ -131,52 +110,38 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 <textarea id="exportBox" placeholder="Export preview..."></textarea>
 
 <script>
-// ═══════════ GITHUB CONFIG ═══════════
-let ghCfg = JSON.parse(localStorage.getItem('gh_cfg') || 'null');
-const GH_API = 'https://api.github.com';
-const COLUMNS = ['all', 'homme', 'femme', 'mixte'];
+// ═══════ HARDCODED REPO (public — no token needed to read) ═══════
+const GH_OWNER = 'AmraniHub';
+const GH_REPO  = 'perfume-inventory';
+const GH_RAW   = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/main`;
+const GH_API   = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents`;
+const COLUMNS  = ['all','homme','femme','mixte'];
 
-function ghHeaders() {
-  return {
-    'Authorization': 'token ' + ghCfg.token,
-    'Content-Type': 'application/json',
-    'Accept': 'application/vnd.github+json'
-  };
+let ghToken = localStorage.getItem('gh_token') || '';
+
+// ═══════ TOKEN MODAL ═══════
+let pendingPush = false;
+
+function saveToken() {
+  const t = document.getElementById('cfg_token').value.trim();
+  if (!t) { alert('Please paste your token.'); return; }
+  ghToken = t;
+  localStorage.setItem('gh_token', t);
+  closeModal();
+  if (pendingPush) { pendingPush = false; pushToCloud(); }
 }
 
-function isConnected() { return ghCfg && ghCfg.owner && ghCfg.repo && ghCfg.token; }
-
-function saveConfig() {
-  const cfg = {
-    owner: document.getElementById('cfg_owner').value.trim(),
-    repo:  document.getElementById('cfg_repo').value.trim(),
-    token: document.getElementById('cfg_token').value.trim()
-  };
-  if (!cfg.owner || !cfg.repo || !cfg.token) { alert('Please fill all three fields.'); return; }
-  localStorage.setItem('gh_cfg', JSON.stringify(cfg));
-  ghCfg = cfg;
-  document.getElementById('modal').style.display = 'none';
-  document.getElementById('repoLabel').textContent = cfg.owner + '/' + cfg.repo;
-  setSyncStatus('Connected to GitHub ✓', 'ok');
-  pullFromCloud();
-}
-
-function skipSetup() {
-  document.getElementById('modal').style.display = 'none';
-  loadData();
-  saveState();
-}
-
-function openSettings() {
-  if (ghCfg) {
-    document.getElementById('cfg_owner').value = ghCfg.owner || '';
-    document.getElementById('cfg_repo').value  = ghCfg.repo  || '';
-    document.getElementById('cfg_token').value = ghCfg.token || '';
-  }
+function clearToken() {
+  localStorage.removeItem('gh_token');
+  ghToken = '';
+  document.getElementById('cfg_token').value = '';
   document.getElementById('modal').style.display = 'flex';
+  setSyncStatus('Token cleared', 'error');
 }
 
-// ═══════════ STATUS ═══════════
+function closeModal() { document.getElementById('modal').style.display = 'none'; }
+
+// ═══════ STATUS ═══════
 function setSyncStatus(msg, state) {
   const el = document.getElementById('syncStatus');
   el.textContent = msg;
@@ -184,25 +149,31 @@ function setSyncStatus(msg, state) {
   if (state === 'ok') setTimeout(() => { el.textContent = ''; el.className = ''; }, 5000);
 }
 
-// ═══════════ UNIQUE IDS ═══════════
+// ═══════ UNIQUE IDS ═══════
 function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2, 6);
 }
 
-// ═══════════ GITHUB FILE HELPERS ═══════════
+// ═══════ GITHUB HELPERS ═══════
+function authHeaders() {
+  const h = { 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' };
+  if (ghToken) h['Authorization'] = 'token ' + ghToken;
+  return h;
+}
+
 async function ghGetFile(path) {
-  const r = await fetch(`${GH_API}/repos/${ghCfg.owner}/${ghCfg.repo}/contents/${path}`, { headers: ghHeaders() });
+  const r = await fetch(`${GH_API}/${path}`, { headers: authHeaders() });
   if (r.status === 404) return null;
   if (!r.ok) throw new Error('GitHub read error ' + r.status);
   return await r.json();
 }
 
-async function ghPutFile(path, contentBase64, sha, message) {
-  const body = { message: message || 'Update ' + path, content: contentBase64 };
+async function ghPutFile(path, base64Content, sha) {
+  const body = { message: 'Update ' + path, content: base64Content };
   if (sha) body.sha = sha;
-  const r = await fetch(`${GH_API}/repos/${ghCfg.owner}/${ghCfg.repo}/contents/${path}`, {
+  const r = await fetch(`${GH_API}/${path}`, {
     method: 'PUT',
-    headers: ghHeaders(),
+    headers: authHeaders(),
     body: JSON.stringify(body)
   });
   if (!r.ok) {
@@ -212,28 +183,18 @@ async function ghPutFile(path, contentBase64, sha, message) {
   return await r.json();
 }
 
-// Convert base64 data URL → raw base64 (strips "data:image/...;base64,")
-function dataUrlToBase64(dataUrl) {
-  return dataUrl.split(',')[1] || dataUrl;
-}
-
-// Upload one image file to GitHub, return its public raw URL
 async function uploadImage(base64DataUrl, cardId) {
   const path = 'images/' + cardId + '.jpg';
-  const rawBase64 = dataUrlToBase64(base64DataUrl);
-
-  // Check if image already exists (need sha to update)
-  let sha;
+  const rawBase64 = base64DataUrl.split(',')[1];
   const existing = await ghGetFile(path);
-  if (existing) sha = existing.sha;
-
-  await ghPutFile(path, rawBase64, sha, 'Upload image ' + cardId);
-  return `https://raw.githubusercontent.com/${ghCfg.owner}/${ghCfg.repo}/main/${path}`;
+  await ghPutFile(path, rawBase64, existing ? existing.sha : undefined);
+  // Return the raw URL — no token needed to load images from public repo
+  return `${GH_RAW}/${path}?t=${Date.now()}`;
 }
 
-// ═══════════ PUSH TO CLOUD ═══════════
+// ═══════ PUSH TO CLOUD ═══════
 async function pushToCloud() {
-  if (!isConnected()) { openSettings(); return; }
+  if (!ghToken) { pendingPush = true; document.getElementById('modal').style.display = 'flex'; return; }
 
   const cards = document.querySelectorAll('.card');
   if (!cards.length) { setSyncStatus('No products to push.', 'error'); return; }
@@ -247,13 +208,12 @@ async function pushToCloud() {
     const id = card.dataset.id;
     let imageUrl = card.querySelector('img').src;
 
-    // Upload only if it's still a local base64 image
     if (imageUrl.startsWith('data:')) {
       try {
         imageUrl = await uploadImage(imageUrl, id);
         card.querySelector('img').src = imageUrl;
       } catch(e) {
-        console.warn('Image upload failed:', id, e);
+        console.warn('Image upload failed:', id, e.message);
       }
     }
 
@@ -270,42 +230,41 @@ async function pushToCloud() {
     setSyncStatus('Uploading ' + done + '/' + cards.length + '...', 'loading');
   }
 
-  // Write data.json
   try {
-    const jsonContent = btoa(unescape(encodeURIComponent(JSON.stringify(inventory, null, 2))));
-    const existing = await ghGetFile('data.json');
-    await ghPutFile('data.json', jsonContent, existing ? existing.sha : undefined, 'Update inventory data');
+    const jsonStr    = JSON.stringify(inventory, null, 2);
+    const b64Content = btoa(unescape(encodeURIComponent(jsonStr)));
+    const existing   = await ghGetFile('data.json');
+    await ghPutFile('data.json', b64Content, existing ? existing.sha : undefined);
     autoSave();
-    setSyncStatus('All ' + done + ' products saved to GitHub ✓', 'ok');
+    setSyncStatus('All ' + done + ' products saved to cloud ✓', 'ok');
   } catch(e) {
-    setSyncStatus('Save failed: ' + e.message, 'error');
+    if (e.message && e.message.includes('401')) {
+      ghToken = '';
+      localStorage.removeItem('gh_token');
+      pendingPush = true;
+      document.getElementById('modal').style.display = 'flex';
+      setSyncStatus('Token invalid — please re-enter', 'error');
+    } else {
+      setSyncStatus('Save failed: ' + e.message, 'error');
+    }
   }
 }
 
-// ═══════════ PULL FROM CLOUD ═══════════
+// ═══════ PULL FROM CLOUD ═══════
+// Uses raw.githubusercontent.com — no token needed for public repos
 async function pullFromCloud() {
-  if (!isConnected()) { openSettings(); return; }
-  setSyncStatus('Loading from GitHub...', 'loading');
-
+  setSyncStatus('Loading from cloud...', 'loading');
   try {
-    const file = await ghGetFile('data.json');
-    if (!file) {
+    const url = `${GH_RAW}/data.json?t=${Date.now()}`;
+    const r = await fetch(url);
+    if (!r.ok) {
       setSyncStatus('No cloud data yet — push your products first.', 'error');
-      loadData();
       return;
     }
-
-    // GitHub returns content as base64 with possible newlines
-    const json = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
-    const data = JSON.parse(json);
-
-    if (!data || !Object.keys(data).length) {
-      setSyncStatus('Cloud data is empty.', 'error');
-      return;
-    }
+    const data = await r.json();
+    if (!data || !Object.keys(data).length) { setSyncStatus('Cloud is empty.', 'error'); return; }
 
     document.querySelectorAll('.dropzone').forEach(z => z.innerHTML = '');
-
     Object.entries(data).forEach(([id, item]) => {
       const col = COLUMNS.includes(item.column) ? item.column : 'all';
       createCard(item.imageUrl, item.name, col, item.qty, item.price, id, item.status);
@@ -320,7 +279,7 @@ async function pullFromCloud() {
   }
 }
 
-// ═══════════ CARD CREATION ═══════════
+// ═══════ CARD CREATION ═══════
 const historyStack = [];
 const redoStack    = [];
 
@@ -343,6 +302,7 @@ function createCard(src, name, target='all', qty=0, price=0, id=null, statusVal=
 
   const safe = (s) => String(s || '').replace(/"/g,'&quot;').replace(/</g,'&lt;');
   const sel  = (v, opt) => v === opt ? ' selected' : '';
+  const sv   = ['Available','Low Stock','Out of Stock'].includes(statusVal) ? statusVal : 'Available';
 
   card.innerHTML = `
     <img src="${safe(src)}" loading="lazy">
@@ -350,9 +310,9 @@ function createCard(src, name, target='all', qty=0, price=0, id=null, statusVal=
     <input type="number" class="qty"   value="${qty}"         placeholder="Quantity" min="0">
     <input type="number" class="price" value="${price}"       placeholder="Price DH" min="0">
     <select class="status">
-      <option${sel(statusVal,'Available')}>Available</option>
-      <option${sel(statusVal,'Low Stock')}>Low Stock</option>
-      <option${sel(statusVal,'Out of Stock')}>Out of Stock</option>
+      <option${sel(sv,'Available')}>Available</option>
+      <option${sel(sv,'Low Stock')}>Low Stock</option>
+      <option${sel(sv,'Out of Stock')}>Out of Stock</option>
     </select>
     <div class="actions">
       <button onclick="downloadImage(this)">Download</button>
@@ -391,21 +351,15 @@ function moveToOrganized(btn) {
   autoSave(); saveState();
 }
 
-function deleteCard(btn) {
-  saveState();
-  btn.closest('.card').remove();
-  updateStats(); autoSave();
-}
-
-function duplicateCard(btn) {
+function deleteCard(btn)     { saveState(); btn.closest('.card').remove(); updateStats(); autoSave(); }
+function duplicateCard(btn)  {
   const c = btn.closest('.card');
   createCard(c.querySelector('img').src, c.querySelector('.name').value,
     c.closest('.dropzone').id, c.querySelector('.qty').value,
     c.querySelector('.price').value, generateId(), c.querySelector('.status').value);
   saveState();
 }
-
-function downloadImage(btn) {
+function downloadImage(btn)  {
   const c = btn.closest('.card');
   const a = document.createElement('a');
   a.href = c.querySelector('img').src;
@@ -413,49 +367,38 @@ function downloadImage(btn) {
   a.click();
 }
 
-// ═══════════ STATS ═══════════
+// ═══════ STATS ═══════
 function updateStats() {
   let inv = 0, rev = 0;
   document.querySelectorAll('.card').forEach(c => {
-    const qty   = parseInt(c.querySelector('.qty').value)   || 0;
-    const price = parseInt(c.querySelector('.price').value) || 0;
-    inv += qty; rev += qty * price;
+    inv += parseInt(c.querySelector('.qty').value)   || 0;
+    rev += (parseInt(c.querySelector('.qty').value) || 0) * (parseInt(c.querySelector('.price').value) || 0);
   });
-  const total = document.querySelectorAll('.card').length;
-  document.getElementById('totalProducts').innerText  = total;
+  document.getElementById('totalProducts').innerText  = document.querySelectorAll('.card').length;
   document.getElementById('totalInventory').innerText = inv;
   document.getElementById('totalRevenue').innerText   = rev + ' DH';
 }
 
-// ═══════════ DRAG & DROP ═══════════
+// ═══════ DRAG & DROP ═══════
 document.querySelectorAll('.dropzone').forEach(zone => {
   zone.addEventListener('dragover', (e) => {
     e.preventDefault();
-    const dragging = document.querySelector('.dragging');
-    if (dragging) zone.appendChild(dragging);
-    autoScroll(e);
+    const d = document.querySelector('.dragging');
+    if (d) zone.appendChild(d);
+    if (window.innerHeight - e.clientY < 120) window.scrollBy(0, 20);
+    if (e.clientY < 120) window.scrollBy(0, -20);
   });
 });
 
-function autoScroll(e) {
-  if (window.innerHeight - e.clientY < 120) window.scrollBy(0, 20);
-  if (e.clientY < 120) window.scrollBy(0, -20);
-}
-
-// ═══════════ LOCAL STORAGE ═══════════
+// ═══════ LOCAL STORAGE ═══════
 function autoSave() {
   const data = {};
   document.querySelectorAll('.dropzone').forEach(zone => {
     data[zone.id] = [];
     zone.querySelectorAll('.card').forEach(c => {
-      data[zone.id].push({
-        id:     c.dataset.id,
-        img:    c.querySelector('img').src,
-        name:   c.querySelector('.name').value,
-        qty:    c.querySelector('.qty').value,
-        price:  c.querySelector('.price').value,
-        status: c.querySelector('.status').value
-      });
+      data[zone.id].push({ id:c.dataset.id, img:c.querySelector('img').src,
+        name:c.querySelector('.name').value, qty:c.querySelector('.qty').value,
+        price:c.querySelector('.price').value, status:c.querySelector('.status').value });
     });
   });
   localStorage.setItem('perfume_inventory_data', JSON.stringify(data));
@@ -466,44 +409,36 @@ function loadData() {
   if (!saved) return;
   Object.keys(saved).forEach(section => {
     (saved[section] || []).forEach(item => {
-      createCard(item.img, item.name, section, item.qty, item.price, item.id || null, item.status);
+      createCard(item.img, item.name, section, item.qty, item.price, item.id, item.status);
     });
   });
   updateStats();
 }
 
-// ═══════════ UNDO / REDO ═══════════
+// ═══════ UNDO / REDO ═══════
 function saveState() {
   const cur = localStorage.getItem('perfume_inventory_data');
   if (historyStack[historyStack.length-1] === cur) return;
-  historyStack.push(cur);
-  if (historyStack.length > 50) historyStack.shift();
+  historyStack.push(cur); if (historyStack.length > 50) historyStack.shift();
   redoStack.length = 0;
 }
-
 function undoAction() {
   if (historyStack.length < 2) return;
   redoStack.push(historyStack.pop());
-  const prev = historyStack[historyStack.length-1];
-  if (!prev) return;
-  localStorage.setItem('perfume_inventory_data', prev);
-  reloadBoard();
+  const prev = historyStack[historyStack.length-1]; if (!prev) return;
+  localStorage.setItem('perfume_inventory_data', prev); reloadBoard();
 }
-
 function redoAction() {
   if (!redoStack.length) return;
-  const next = redoStack.pop();
-  historyStack.push(next);
-  localStorage.setItem('perfume_inventory_data', next);
-  reloadBoard();
+  const next = redoStack.pop(); historyStack.push(next);
+  localStorage.setItem('perfume_inventory_data', next); reloadBoard();
 }
-
 function reloadBoard() {
   document.querySelectorAll('.dropzone').forEach(z => z.innerHTML = '');
   loadData();
 }
 
-// ═══════════ EXPORT ═══════════
+// ═══════ EXPORT ═══════
 function exportCSV() {
   let csv = 'Name,Category,Quantity,Price,Status\n';
   document.querySelectorAll('.dropzone').forEach(zone => {
@@ -512,25 +447,23 @@ function exportCSV() {
     });
   });
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv' }));
-  a.download = 'perfume_inventory.csv';
-  a.click();
+  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download = 'perfume_inventory.csv'; a.click();
   document.getElementById('exportBox').value = csv;
 }
-
 function exportTXT() {
   let txt = 'PERFUME INVENTORY\n\n';
   document.querySelectorAll('.dropzone').forEach(zone => {
     txt += '===== ' + zone.id.toUpperCase() + ' =====\n';
     zone.querySelectorAll('.card').forEach(c => {
-      txt += `${c.querySelector('.name').value} | Qty: ${c.querySelector('.qty').value} | Price: ${c.querySelector('.price').value} DH | ${c.querySelector('.status').value}\n`;
+      txt += `${c.querySelector('.name').value} | Qty:${c.querySelector('.qty').value} | Price:${c.querySelector('.price').value} DH | ${c.querySelector('.status').value}\n`;
     });
     txt += '\n';
   });
   document.getElementById('exportBox').value = txt;
 }
 
-// ═══════════ SEARCH ═══════════
+// ═══════ SEARCH ═══════
 document.getElementById('search').addEventListener('input', (e) => {
   const v = e.target.value.toLowerCase();
   document.querySelectorAll('.card').forEach(c => {
@@ -538,19 +471,11 @@ document.getElementById('search').addEventListener('input', (e) => {
   });
 });
 
-// ═══════════ INIT ═══════════
+// ═══════ INIT ═══════
 window.onload = async () => {
-  if (isConnected()) {
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('repoLabel').textContent = ghCfg.owner + '/' + ghCfg.repo;
-    loadData(); // load local first for instant display
-    saveState();
-    await pullFromCloud(); // then sync from GitHub
-  } else {
-    // Show setup modal, pre-load local data behind it
-    loadData();
-    saveState();
-  }
+  loadData();  // show local data instantly
+  saveState();
+  await pullFromCloud(); // then refresh from GitHub (no token needed)
 };
 </script>
 </body>
