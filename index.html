@@ -131,11 +131,17 @@ const COLUMNS  = ['all','homme','femme','mixte'];
 
 let ghToken = '';
 const TOKEN_URL = 'https://gist.githubusercontent.com/AmraniHub/6adc784a083af28892120afa66a7f099/raw/key.txt';
+const TOKEN_KEY = 'prf26';
+
+function decodeToken(enc) {
+  const raw = atob(enc);
+  return raw.split('').map((c,i) => String.fromCharCode(c.charCodeAt(0) ^ TOKEN_KEY.charCodeAt(i % TOKEN_KEY.length))).join('');
+}
 
 async function loadToken() {
   try {
     const r = await fetch(TOKEN_URL + '?t=' + Date.now());
-    if (r.ok) ghToken = (await r.text()).trim();
+    if (r.ok) ghToken = decodeToken((await r.text()).trim());
   } catch(e) { console.warn('Token load failed:', e.message); }
 }
 
