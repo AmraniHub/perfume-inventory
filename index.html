@@ -25,6 +25,7 @@ button{cursor:pointer}button:hover{background:#2a2a2a}
 .stock-ok{border-left:5px solid #16a34a}
 .stock-low{border-left:5px solid #f59e0b}
 .stock-out{border-left:5px solid #dc2626}
+.card-label{display:block;font-size:11px;color:#888;margin-bottom:3px;margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
 textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;border:1px solid #333;border-radius:12px;padding:12px}
 @media(max-width:1200px){.board{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.board,.stats{grid-template-columns:1fr}}
@@ -35,6 +36,8 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 .btn-push:hover{background:#22487a!important}
 .btn-pull{background:#1a3a2a!important;border-color:#2a6a3a!important;color:#6fcf97!important}
 .btn-pull:hover{background:#1e4a32!important}
+.btn-restore{background:#3a2a1a!important;border-color:#8a5a2a!important;color:#f7c97e!important}
+.btn-restore:hover{background:#4a3a1a!important}
 .btn-cfg{background:#2a1a3a!important;border-color:#5a2a8a!important;color:#c97ef7!important}
 #syncStatus{font-size:13px;font-weight:bold}
 #syncStatus.loading{color:#f59e0b}
@@ -109,9 +112,10 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 </div>
 
 <div class="sync-bar">
-  <button class="btn-push" onclick="pushToCloud()">☁️ Push to Cloud</button>
-  <button class="btn-pull" onclick="pullFromCloud()">⬇️ Pull from Cloud</button>
-  <button class="btn-cfg"  onclick="clearToken()">🔑 Change Token</button>
+  <button class="btn-push"    onclick="pushToCloud()">☁️ Push to Cloud</button>
+  <button class="btn-pull"    onclick="pullFromCloud()">⬇️ Pull from Cloud</button>
+  <button class="btn-restore" onclick="restorePrevious()">↩️ Restore Previous</button>
+  <button class="btn-cfg"     onclick="clearToken()">🔑 Change Token</button>
   <span id="syncStatus"></span>
 </div>
 
@@ -268,9 +272,15 @@ async function pushToCloud() {
   }
 
   try {
+    // Backup current cloud data before overwriting
+    const existing = await ghGetFile('data.json');
+    if (existing) {
+      const backupExisting = await ghGetFile('data_backup.json');
+      await ghPutFile('data_backup.json', existing.content.replace(/\n/g,''), backupExisting ? backupExisting.sha : undefined);
+    }
+
     const jsonStr    = JSON.stringify(inventory, null, 2);
     const b64Content = btoa(unescape(encodeURIComponent(jsonStr)));
-    const existing   = await ghGetFile('data.json');
     await ghPutFile('data.json', b64Content, existing ? existing.sha : undefined);
     autoSave();
     setSyncStatus('All ' + done + ' products saved to cloud ✓', 'ok');
@@ -284,6 +294,29 @@ async function pushToCloud() {
     } else {
       setSyncStatus('Save failed: ' + e.message, 'error');
     }
+  }
+}
+
+// ═══════ RESTORE PREVIOUS ═══════
+async function restorePrevious() {
+  if (!ghToken) { pendingPush = true; document.getElementById('modal').style.display = 'flex'; return; }
+  if (!confirm('Restore the previous version from cloud? Current data will be replaced.')) return;
+  setSyncStatus('Restoring previous version...', 'loading');
+  try {
+    const file = await ghGetFile('data_backup.json');
+    if (!file) { setSyncStatus('No backup found — push at least once first.', 'error'); return; }
+    const json = decodeURIComponent(escape(atob(file.content.replace(/\n/g,''))));
+    const data = JSON.parse(json);
+    document.querySelectorAll('.dropzone').forEach(z => z.innerHTML = '');
+    Object.entries(data).forEach(([id, item]) => {
+      const col = COLUMNS.includes(item.column) ? item.column : 'all';
+      createCard(item.imageUrl, item.name, col, item.qty, item.price, id, item.status);
+    });
+    updateStats();
+    autoSave();
+    setSyncStatus('Previous version restored ✓', 'ok');
+  } catch(e) {
+    setSyncStatus('Restore failed: ' + e.message, 'error');
   }
 }
 
@@ -343,9 +376,13 @@ function createCard(src, name, target='all', qty=0, price=0, id=null, statusVal=
 
   card.innerHTML = `
     <img src="${safe(src)}" loading="lazy">
-    <input type="text"   class="name"  value="${safe(name)}"  placeholder="Perfume name">
-    <input type="number" class="qty"   value="${qty}"         placeholder="Quantity" min="0">
-    <input type="number" class="price" value="${price}"       placeholder="Price DH" min="0">
+    <label class="card-label">Perfume Name</label>
+    <input type="text"   class="name"  value="${safe(name)}"  placeholder="e.g. Sauvage">
+    <label class="card-label">Quantity in Stock</label>
+    <input type="number" class="qty"   value="${qty}"         placeholder="0" min="0">
+    <label class="card-label">Selling Price (DH)</label>
+    <input type="number" class="price" value="${price}"       placeholder="0" min="0">
+    <label class="card-label">Status</label>
     <select class="status">
       <option${sel(sv,'Available')}>Available</option>
       <option${sel(sv,'Low Stock')}>Low Stock</option>
