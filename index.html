@@ -513,11 +513,21 @@ function reloadBoard() {
 }
 
 // ═══════ EXPORT ═══════
+function getImageUrl(card) {
+  const src = card.querySelector('img').src;
+  // If still base64 (not yet pushed), no link available
+  if (src.startsWith('data:')) return '(push to cloud first to get link)';
+  // Strip cache-busting query param if present
+  return src.split('?')[0];
+}
+
 function exportCSV() {
-  let csv = 'Name,Category,Quantity,Price,Status\n';
+  let csv = 'Name,Category,Quantity,Price,Status,Image URL\n';
   document.querySelectorAll('.dropzone').forEach(zone => {
     zone.querySelectorAll('.card').forEach(c => {
-      csv += `"${c.querySelector('.name').value}",${zone.id},${c.querySelector('.qty').value},${c.querySelector('.price').value},${c.querySelector('.status').value}\n`;
+      const name   = c.querySelector('.name').value.replace(/"/g,'""');
+      const imgUrl = getImageUrl(c);
+      csv += `"${name}",${zone.id},${c.querySelector('.qty').value},${c.querySelector('.price').value},${c.querySelector('.status').value},"${imgUrl}"\n`;
     });
   });
   const a = document.createElement('a');
@@ -525,14 +535,16 @@ function exportCSV() {
   a.download = 'perfume_inventory.csv'; a.click();
   document.getElementById('exportBox').value = csv;
 }
+
 function exportTXT() {
   let txt = 'PERFUME INVENTORY\n\n';
   document.querySelectorAll('.dropzone').forEach(zone => {
     txt += '===== ' + zone.id.toUpperCase() + ' =====\n';
     zone.querySelectorAll('.card').forEach(c => {
+      const imgUrl = getImageUrl(c);
       txt += `${c.querySelector('.name').value} | Qty:${c.querySelector('.qty').value} | Price:${c.querySelector('.price').value} DH | ${c.querySelector('.status').value}\n`;
+      txt += `Image: ${imgUrl}\n\n`;
     });
-    txt += '\n';
   });
   document.getElementById('exportBox').value = txt;
 }
