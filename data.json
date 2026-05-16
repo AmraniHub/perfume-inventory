@@ -1,1 +1,714 @@
-{}
+{
+  "mp8jgmsakaa15y": {
+    "name": "3 Parfums Homme A 250 Dh",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/3-parfums-homme-a-250-dh.png"
+  },
+  "mp8jgmsbic2lra": {
+    "name": "Afnan 9pm Elixir Extrait De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/afnan-9pm-elixir-extrait-de-parfum-10ml.jpg"
+  },
+  "mp8jgmsbnpjii2": {
+    "name": "Afnan 9pm Night Out Extrait De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/afnan-9pm-night-out-extrait-de-parfum-10ml.jpg"
+  },
+  "mp8jgmsb16p1ds": {
+    "name": "Armani Prive Vert Malachite Eau De Parfum",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/armani-prive-vert-malachite-eau-de-parfum.jpg"
+  },
+  "mp8jgmsbt4rsqf": {
+    "name": "Boss Bottled Absolu Parfum Intense Elegance Masculine 10 Ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/boss-bottled-absolu-parfum-intense-elegance-masculine-10-ml.jpg"
+  },
+  "mp8jgmsc238mf8": {
+    "name": "Cartier Declaration Eau De Parfum",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/cartier-declaration-eau-de-parfum.jpg"
+  },
+  "mp8jgmscntkv2c": {
+    "name": "Club De Nuit",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/club-de-nuit.jpg"
+  },
+  "mp8jgmscf74sas": {
+    "name": "Dior Homme Intense Dior",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/dior-homme-intense-dior.jpg"
+  },
+  "mp8jgmsckc4g06": {
+    "name": "Duo Fight Vulcan Feu Stronger With You",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/duo-fight-vulcan-feu-stronger-with-you.jpg"
+  },
+  "mp8jgmsc7bnvrl": {
+    "name": "Duo Intense Le Beau Flower Dior Homme Intense",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/duo-intense-le-beau-flower-dior-homme-intense.jpg"
+  },
+  "mp8jgmsdsq8auf": {
+    "name": "Duo Light Sauvage Hugo",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/duo-light-sauvage-hugo.jpg"
+  },
+  "mp8jgmsd3bqpbw": {
+    "name": "Fahrenheit Le Parfum De Dior",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/fahrenheit-le-parfum-de-dior.jpg"
+  },
+  "mp8jgmsdiwk21i": {
+    "name": "Gentleman Eau De Parfum Givenchy",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/gentleman-eau-de-parfum-givenchy.jpg"
+  },
+  "mp8jgmsd7l8mnm": {
+    "name": "Gissah Calabria L Elegance Orientale Sublimee Par Une Fraicheur Mediterraneenne",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/gissah-calabria-l-elegance-orientale-sublimee-par-une-fraicheur-mediterraneenne.jpg"
+  },
+  "mp8jgmsd3qrovd": {
+    "name": "Givenchy L Interdit Rouge Ultime Eau De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/givenchy-l-interdit-rouge-ultime-eau-de-parfum-10ml.jpg"
+  },
+  "mp8jgmseeu0fhf": {
+    "name": "Gucci Flora Gorgeous Gardenia Eau De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/gucci-flora-gorgeous-gardenia-eau-de-parfum-10ml.jpg"
+  },
+  "mp8jgmse7swr3d": {
+    "name": "Hermes Barenia Eau De Parfum Intense",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/hermes-barenia-eau-de-parfum-intense.jpg"
+  },
+  "mp8jgmse4vc95o": {
+    "name": "Hugo Jeans Intense Edp Hugo Boss",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/hugo-jeans-intense-edp-hugo-boss.jpg"
+  },
+  "mp8jgmsejmyief": {
+    "name": "Jadore Dior Pour Femme",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/jadore-dior-pour-femme.jpg"
+  },
+  "mp8jgmsexk5x3x": {
+    "name": "Jean Paul Gaultier Elixir Parfum Luxe Homme",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/jean-paul-gaultier-elixir-parfum-luxe-homme.jpg"
+  },
+  "mp8jgmsfc9xh2d": {
+    "name": "Jean Paul Gaultier La Belle Parfum Femme",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/jean-paul-gaultier-la-belle-parfum-femme.jpg"
+  },
+  "mp8jgmsfi6mkr5": {
+    "name": "Jean Paul Gaultier Le Beau Paradise Garden Eau De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/jean-paul-gaultier-le-beau-paradise-garden-eau-de-parfum-10ml.jpg"
+  },
+  "mp8jgmsf2mn7d5": {
+    "name": "Jean Paul Gaultier Le Male Le Parfum",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/jean-paul-gaultier-le-male-le-parfum.jpg"
+  },
+  "mp8jgmsfjmeqd4": {
+    "name": "Jean Paul Gaultier Scandal Pour Homme",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/jean-paul-gaultier-scandal-pour-homme.jpg"
+  },
+  "mp8jgmsgz2m3pb": {
+    "name": "Jean Paul Gaultier So Scandal Eau De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/jean-paul-gaultier-so-scandal-eau-de-parfum-10ml.jpg"
+  },
+  "mp8jgmsgfviqm0": {
+    "name": "Jean Paul Gautier Luxe",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/jean-paul-gautier-luxe.jpg"
+  },
+  "mp8jgmsgh8namb": {
+    "name": "Kayali Yum Boujee Marshmallow Eau De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/kayali-yum-boujee-marshmallow-eau-de-parfum-10ml.jpg"
+  },
+  "mp8jgmsh8mvtlc": {
+    "name": "Kayali Yum Pistachio Gelato Edp 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/kayali-yum-pistachio-gelato-edp-10ml.jpg"
+  },
+  "mp8jgmshpzvyep": {
+    "name": "Khamrah Le Parfum Signature Entre Chaleur Orientale Et Raffinement Absolu 10 Ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/khamrah-le-parfum-signature-entre-chaleur-orientale-et-raffinement-absolu-10-ml.jpg"
+  },
+  "mp8jgmsh7xj844": {
+    "name": "Khamrah Qahwa L Elegance Orientale Au Parfum Envoutant",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/khamrah-qahwa-l-elegance-orientale-au-parfum-envoutant.jpg"
+  },
+  "mp8jgmshev5mk3": {
+    "name": "Le Beau Flower Edition",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/le-beau-flower-edition.jpg"
+  },
+  "mp8jgmsi4fh6hx": {
+    "name": "Le Beau Paradise Garden Eau De Parfum",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/le-beau-paradise-garden-eau-de-parfum.jpg"
+  },
+  "mp8jgmsiuwk2oc": {
+    "name": "Le Male Jean Paul Gaultier",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/le-male-jean-paul-gaultier.jpg"
+  },
+  "mp8jgmsj4ax7xf": {
+    "name": "Le Trio Parfum Homme Qui Fait La Difference",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/le-trio-parfum-homme-qui-fait-la-difference.jpg"
+  },
+  "mp8jgmsj4znbgz": {
+    "name": "Lhomme Ideal Eau De Parfum",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/lhomme-ideal-eau-de-parfum.jpg"
+  },
+  "mp8jgmsjipg1w8": {
+    "name": "Mawi Moscow Mule Eau De Parfum Fraiche Elegance Glaciale 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/mawi-moscow-mule-eau-de-parfum-fraiche-elegance-glaciale-10ml.jpg"
+  },
+  "mp8jgmsk7236tl": {
+    "name": "Montale Bengal Oud Eau De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/montale-bengal-oud-eau-de-parfum-10ml.jpg"
+  },
+  "mp8jgmsk2ugwsd": {
+    "name": "Montale Ristretto Intense Cafe Extrait De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/montale-ristretto-intense-cafe-extrait-de-parfum-10ml.jpg"
+  },
+  "mp8jgmskumaj8u": {
+    "name": "Pack 2 Parfums",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-2-parfums.jpg"
+  },
+  "mp8jgmskfdp3ie": {
+    "name": "Pack 3 Parfums De Luxe",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-3-parfums-de-luxe.jpg"
+  },
+  "mp8jgmsl5p9kb4": {
+    "name": "Pack 3 Parfums Homme 250 Dh Seulement",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-3-parfums-homme-250-dh-seulement.jpg"
+  },
+  "mp8jgmsln9auhj": {
+    "name": "Pack 3 Parfums Plus",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-3-parfums-plus.jpg"
+  },
+  "mp8jgmsl6nm2dv": {
+    "name": "Pack 3 Parfums Premium 290 Dh",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-3-parfums-premium-290-dh.jpg"
+  },
+  "mp8jgmslsr5hq5": {
+    "name": "Pack 3 Parfums",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-3-parfums.jpg"
+  },
+  "mp8jgmsml8hioc": {
+    "name": "Pack 9 Pm",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-9-pm.jpg"
+  },
+  "mp8jgmsme66g32": {
+    "name": "Pack Arabe De Luxe Pour Hommes",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-arabe-de-luxe-pour-hommes.jpg"
+  },
+  "mp8jgmsmo2ckc7": {
+    "name": "Pack Celebrites",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-celebrites.jpg"
+  },
+  "mp8jgmsn6dji6l": {
+    "name": "Pack Clean",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-clean.jpg"
+  },
+  "mp8jgmsnkkz5ip": {
+    "name": "Pack De Luxe",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-de-luxe.jpg"
+  },
+  "mp8jgmsn366yu2": {
+    "name": "Pack Decontracte",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-decontracte.jpg"
+  },
+  "mp8jgmsokn1db0": {
+    "name": "Pack Decouverte Parfum Homme Cadeau",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-decouverte-parfum-homme-cadeau.jpg"
+  },
+  "mp8jgmsozivh9m": {
+    "name": "Pack Elegance",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-elegance.jpg"
+  },
+  "mp8jgmsp14um1e": {
+    "name": "Pack Ete Pour Femmes",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-ete-pour-femmes.jpg"
+  },
+  "mp8jgmspdrj3oc": {
+    "name": "Pack Fraicheur Mediterraneenne",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-fraicheur-mediterraneenne.png"
+  },
+  "mp8jgmspmwh7md": {
+    "name": "Pack Guerlain",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-guerlain.jpg"
+  },
+  "mp8jgmsqbp2xqy": {
+    "name": "Pack Homme Fraicheur Seduction",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-homme-fraicheur-seduction.jpg"
+  },
+  "mp8jgmsq40js6c": {
+    "name": "Pack Homme Premium",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-homme-premium.jpg"
+  },
+  "mp8jgmsqrwug7h": {
+    "name": "Pack Jean Paul Gautier Le Beau",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-jean-paul-gautier-le-beau.jpg"
+  },
+  "mp8jgmsr5maje8": {
+    "name": "Pack Jean Paul Gautier Le Male Le Beau",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-jean-paul-gautier-le-male-le-beau.jpg"
+  },
+  "mp8jgmsr4fg30p": {
+    "name": "Pack Jean Paul Gautier Le Male",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-jean-paul-gautier-le-male.jpg"
+  },
+  "mp8jgmsr78sa1t": {
+    "name": "Pack Muslim",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-muslim.jpg"
+  },
+  "mp8jgmssfs4ukv": {
+    "name": "Pack Parfums 10ml 220dh",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-parfums-10ml-220dh.jpg"
+  },
+  "mp8jgmsswgfwm0": {
+    "name": "Pack Parfums De Luxe",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-parfums-de-luxe.jpg"
+  },
+  "mp8jgmstsumgn9": {
+    "name": "Pack Parfums Decants",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-parfums-decants.png"
+  },
+  "mp8jgmstq9vi5p": {
+    "name": "Pack Prestige 4 Parfums Sacoche Offert",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-prestige-4-parfums-sacoche-offert.jpg"
+  },
+  "mp8jgmsud0oi4c": {
+    "name": "Pack Prestige Homme 3 Parfums Iconiques En 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-prestige-homme-3-parfums-iconiques-en-10ml.jpg"
+  },
+  "mp8jgmsvjibw6o": {
+    "name": "Pack Prestige",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-prestige.jpg"
+  },
+  "mp8jgmswskl1l0": {
+    "name": "Pack Princesse",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-princesse.jpg"
+  },
+  "mp8jgmswsefg7z": {
+    "name": "Pack Seduction Elegante",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-seduction-elegante.png"
+  },
+  "mp8jgmsw7fli8f": {
+    "name": "Pack Seduction Intense",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-seduction-intense.png"
+  },
+  "mp8jgmsxvpnu3a": {
+    "name": "Pack Style",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/pack-style.jpg"
+  },
+  "mp8jgmsx9473ew": {
+    "name": "Prada Paradoxe Eau De Parfum Parfum Femme Floral Sensuel Longue Tenue 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/prada-paradoxe-eau-de-parfum-parfum-femme-floral-sensuel-longue-tenue-10ml.jpg"
+  },
+  "mp8jgmsx6kurr4": {
+    "name": "Prada Paradoxe Intense Pour Femme",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/prada-paradoxe-intense-pour-femme.jpg"
+  },
+  "mp8jgmsypqcv1r": {
+    "name": "Sauvage Eau De Parfum Dior",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/sauvage-eau-de-parfum-dior.jpg"
+  },
+  "mp8jgmsyr3tequ": {
+    "name": "Scandal Eau De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/scandal-eau-de-parfum-10ml.jpg"
+  },
+  "mp8jgmszujt9d3": {
+    "name": "Si Passione Eclat Giorgio Armani 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/si-passione-eclat-giorgio-armani-10ml.jpg"
+  },
+  "mp8jgmsz77n372": {
+    "name": "Stronger With You Intensely Emporio Armani",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/stronger-with-you-intensely-emporio-armani.jpg"
+  },
+  "mp8jgmszuq9nri": {
+    "name": "Stronger With You Spices Emporio Armani",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/stronger-with-you-spices-emporio-armani.jpg"
+  },
+  "mp8jgmt0e454ex": {
+    "name": "Tom Ford Costa Azzurra Edp Pour Hommes",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/tom-ford-costa-azzurra-edp-pour-hommes.jpg"
+  },
+  "mp8jgmt08t5229": {
+    "name": "Tom Ford Velvet Orchid Pour Femmes",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/tom-ford-velvet-orchid-pour-femmes.jpg"
+  },
+  "mp8jgmt14b45a6": {
+    "name": "Tornado",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/tornado.jpg"
+  },
+  "mp8jgmt2xu2kq3": {
+    "name": "Trio Parfum Homme Seduction Cadeau",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/trio-parfum-homme-seduction-cadeau.jpg"
+  },
+  "mp8jgmt24g5h24": {
+    "name": "Ultra Male Parfum Homme Seduction Longue Tenue",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/ultra-male-parfum-homme-seduction-longue-tenue.jpg"
+  },
+  "mp8jgmt3ecwujj": {
+    "name": "Valentino Uomo Born In Roma Intense",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/valentino-uomo-born-in-roma-intense.jpg"
+  },
+  "mp8jgmt3yp193o": {
+    "name": "Volcan Feu 10 Ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/volcan-feu-10-ml.jpg"
+  },
+  "mp8jgmt3lie4cv": {
+    "name": "Xerjoff Naxos Eau De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/xerjoff-naxos-eau-de-parfum-10ml.jpg"
+  },
+  "mp8jgmt4ryovc3": {
+    "name": "Xerjoff Purple Accento Crystal Edition Eau De Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/xerjoff-purple-accento-crystal-edition-eau-de-parfum-10ml.jpg"
+  },
+  "mp8jgmt419rcwz": {
+    "name": "Yves Saint Laurent Myslf L Absolu Parfum 10ml",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "all",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/yves-saint-laurent-myslf-l-absolu-parfum-10ml.jpg"
+  },
+  "mp8jgms9mfoxl3": {
+    "name": "1 Million Parfum Paco Rabanne",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "homme",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/1-million-parfum-paco-rabanne.jpg"
+  }
+}
