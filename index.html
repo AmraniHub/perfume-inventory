@@ -104,6 +104,7 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 
 <div class="topbar">
   <input type="file" id="imageUpload" multiple accept="image/*">
+  <button onclick="loadAllProducts()" style="background:#1a3020!important;border-color:#2d6040!important;color:#5ddb8a!important;font-weight:bold">📦 Load All 89 Products</button>
   <input type="text" id="search" placeholder="Search perfume...">
   <button onclick="undoAction()">Undo</button>
   <button onclick="redoAction()">Redo</button>
@@ -294,6 +295,35 @@ async function pushToCloud() {
     } else {
       setSyncStatus('Save failed: ' + e.message, 'error');
     }
+  }
+}
+
+// ═══════ LOAD ALL 89 PRODUCTS FROM GITHUB ═══════
+async function loadAllProducts() {
+  if (!confirm('This will add all 89 products from GitHub. Continue?')) return;
+  setSyncStatus('Loading product list...', 'loading');
+  try {
+    const r = await fetch(`${GH_API}/products`, { headers: authHeaders() });
+    if (!r.ok) throw new Error('Cannot read products folder');
+    const files = await r.json();
+    const images = files.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f.name));
+
+    let done = 0;
+    for (const file of images) {
+      const imageUrl = `${GH_RAW}/products/${file.name}`;
+      const name = file.name
+        .replace(/\.[^/.]+$/, '')          // remove extension
+        .replace(/-/g, ' ')               // dashes to spaces
+        .replace(/\b\w/g, c => c.toUpperCase()); // Title Case
+      createCard(imageUrl, name, 'all', 0, 0, generateId());
+      done++;
+      setSyncStatus('Loading ' + done + '/' + images.length + '...', 'loading');
+    }
+    updateStats();
+    autoSave();
+    setSyncStatus('Loaded ' + done + ' products ✓', 'ok');
+  } catch(e) {
+    setSyncStatus('Failed: ' + e.message, 'error');
   }
 }
 
