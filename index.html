@@ -41,6 +41,16 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 #syncStatus.ok{color:#16a34a}
 #syncStatus.error{color:#dc2626}
 
+/* Login screen */
+#loginScreen{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;align-items:center;justify-content:center}
+.login-box{background:#181818;border:1px solid #333;border-radius:24px;padding:40px;max-width:380px;width:90%;text-align:center}
+.login-box h2{font-size:24px;margin-bottom:6px}
+.login-box p{color:#666;font-size:13px;margin-bottom:24px}
+#loginInput{width:100%;padding:14px;border-radius:12px;border:1px solid #333;background:#111;color:#fff;font-size:16px;text-align:center;letter-spacing:3px;margin-bottom:12px}
+#loginBtn{width:100%;padding:14px;border-radius:12px;border:none;background:#1a4fa8;color:#fff;font-size:16px;font-weight:bold;cursor:pointer}
+#loginBtn:hover{background:#1e5cbd}
+#loginError{color:#dc2626;font-size:13px;margin-top:10px;min-height:18px}
+
 /* Token modal */
 #modal{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;display:none;align-items:center;justify-content:center}
 .modal-box{background:#181818;border:1px solid #333;border-radius:20px;padding:32px;max-width:500px;width:92%}
@@ -56,6 +66,17 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 </style>
 </head>
 <body>
+
+<!-- ═══════ LOGIN SCREEN ═══════ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <h2>🔒 Perfume Inventory</h2>
+    <p>Enter your access code to continue</p>
+    <input id="loginInput" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')tryLogin()">
+    <button id="loginBtn" onclick="tryLogin()">Enter</button>
+    <div id="loginError"></div>
+  </div>
+</div>
 
 <!-- Token modal (only needed to PUSH / save changes) -->
 <div id="modal">
@@ -110,6 +131,22 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
 <textarea id="exportBox" placeholder="Export preview..."></textarea>
 
 <script>
+// ═══════ LOGIN ═══════
+const CODES = { 'amrani2026': 'owner', 'imad2026': 'friend' };
+
+function tryLogin() {
+  const val = document.getElementById('loginInput').value.trim();
+  if (CODES[val]) {
+    localStorage.setItem('prf_session', val);
+    document.getElementById('loginScreen').style.display = 'none';
+    startApp();
+  } else {
+    document.getElementById('loginError').textContent = 'Wrong code. Try again.';
+    document.getElementById('loginInput').value = '';
+    document.getElementById('loginInput').focus();
+  }
+}
+
 // ═══════ HARDCODED REPO (public — no token needed to read) ═══════
 const GH_OWNER = 'AmraniHub';
 const GH_REPO  = 'perfume-inventory';
@@ -472,10 +509,21 @@ document.getElementById('search').addEventListener('input', (e) => {
 });
 
 // ═══════ INIT ═══════
-window.onload = async () => {
-  loadData();  // show local data instantly
+async function startApp() {
+  loadData();
   saveState();
-  await pullFromCloud(); // then refresh from GitHub (no token needed)
+  await pullFromCloud();
+}
+
+window.onload = () => {
+  const session = localStorage.getItem('prf_session');
+  if (session && CODES[session]) {
+    document.getElementById('loginScreen').style.display = 'none';
+    startApp();
+  } else {
+    // Show login, focus input
+    document.getElementById('loginInput').focus();
+  }
 };
 </script>
 </body>
