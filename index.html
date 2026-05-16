@@ -310,17 +310,27 @@ async function restorePrevious() {
 async function pullFromCloud(silent=false) {
   if (!silent) setSyncStatus('Loading from cloud...', 'loading');
   try {
-    // Use GitHub API (not raw CDN) so we always get the latest version instantly
+    // Try GitHub API first (always latest, no CDN cache delay)
     const headers = { 'Accept': 'application/vnd.github+json' };
     if (ghToken) headers['Authorization'] = 'token ' + ghToken;
-    const r = await fetch(`${GH_API}/data.json`, { headers });
-    if (!r.ok) {
-      if (!silent) setSyncStatus('No cloud data yet — push your products first.', 'error');
-      return;
+    let data = null;
+
+    try {
+      const r = await fetch(`${GH_API}/data.json`, { headers });
+      if (r.ok) {
+        const file = await r.json();
+        const b64 = file.content.replace(/\n/g, '');
+        const json = new TextDecoder().decode(Uint8Array.from(atob(b64), c => c.charCodeAt(0)));
+        data = JSON.parse(json);
+      }
+    } catch(e) {}
+
+    // Fallback: raw CDN (may be up to 5 min behind)
+    if (!data) {
+      const r2 = await fetch(`${GH_RAW}/data.json?t=${Date.now()}`);
+      if (r2.ok) data = await r2.json();
     }
-    const file = await r.json();
-    const json = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
-    const data = JSON.parse(json);
+
     if (!data || !Object.keys(data).length) {
       if (!silent) setSyncStatus('Cloud is empty — push your products first.', 'error');
       return;
@@ -334,9 +344,9 @@ async function pullFromCloud(silent=false) {
 
     updateStats();
     autoSave();
-    setSyncStatus('Loaded ' + Object.keys(data).length + ' products ✓', 'ok');
+    if (!silent) setSyncStatus('Loaded ' + Object.keys(data).length + ' products ✓', 'ok');
   } catch(e) {
-    setSyncStatus('Load failed: ' + e.message, 'error');
+    if (!silent) setSyncStatus('Load failed: ' + e.message, 'error');
     loadData();
   }
 }
