@@ -679,6 +679,14 @@
     "column": "all",
     "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/afnan-9pm-elixir-extrait-de-parfum-10ml.jpg"
   },
+  "mp8jgms9mfoxl3": {
+    "name": "1 Million Parfum Paco Rabanne",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "homme",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/1-million-parfum-paco-rabanne.jpg"
+  },
   "mp8jgmsakaa15y": {
     "name": "3 Parfums Homme A 250 Dh",
     "qty": "0",
@@ -702,13 +710,5 @@
     "status": "Available",
     "column": "homme",
     "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/armani-prive-vert-malachite-eau-de-parfum.jpg"
-  },
-  "mp8jgms9mfoxl3": {
-    "name": "1 Million Parfum Paco Rabanne",
-    "qty": "0",
-    "price": "0",
-    "status": "Available",
-    "column": "homme",
-    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/1-million-parfum-paco-rabanne.jpg"
   }
 }
