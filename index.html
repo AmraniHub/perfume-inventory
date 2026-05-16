@@ -544,31 +544,58 @@ function getImageUrl(card) {
 }
 
 function exportCSV() {
-  let csv = 'Name,Category,Quantity,Price,Status,Image URL\n';
+  const date = new Date().toISOString().slice(0,10);
+  const q = s => '"' + String(s||'').replace(/"/g,'""') + '"';
+  const COLNAMES = {all:'All Products', homme:'Homme', femme:'Femme', mixte:'Mixte'};
+  let csv = 'Name,Category,Quantity,Price (DH),Status,Image URL\n';
+  let count = 0;
   document.querySelectorAll('.dropzone').forEach(zone => {
     zone.querySelectorAll('.card').forEach(c => {
-      const name   = c.querySelector('.name').value.replace(/"/g,'""');
-      const imgUrl = getImageUrl(c);
-      csv += `"${name}",${zone.id},${c.querySelector('.qty').value},${c.querySelector('.price').value},${c.querySelector('.status').value},"${imgUrl}"\n`;
+      const name    = c.querySelector('.name').value;
+      const qty     = c.querySelector('.qty').value   || '0';
+      const price   = c.querySelector('.price').value || '0';
+      const status  = c.querySelector('.status').value;
+      const cat     = COLNAMES[zone.id] || zone.id;
+      const imgUrl  = getImageUrl(c);
+      csv += `${q(name)},${q(cat)},${qty},${price},${q(status)},${q(imgUrl)}\n`;
+      count++;
     });
   });
+  if (!count) { setSyncStatus('No products to export.', 'error'); return; }
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-  a.download = 'perfume_inventory.csv'; a.click();
+  a.href = URL.createObjectURL(new Blob(['﻿'+csv], {type:'text/csv;charset=utf-8'}));
+  a.download = `perfume_inventory_${date}.csv`;
+  a.click();
   document.getElementById('exportBox').value = csv;
+  setSyncStatus(`Exported ${count} products ✓`, 'ok');
 }
 
 function exportTXT() {
-  let txt = 'PERFUME INVENTORY\n\n';
+  const date = new Date().toISOString().slice(0,10);
+  const COLNAMES = {all:'All Products', homme:'Homme', femme:'Femme', mixte:'Mixte'};
+  let txt = `PERFUME INVENTORY — ${date}\n${'='.repeat(40)}\n\n`;
+  let count = 0;
   document.querySelectorAll('.dropzone').forEach(zone => {
-    txt += '===== ' + zone.id.toUpperCase() + ' =====\n';
-    zone.querySelectorAll('.card').forEach(c => {
+    const cards = zone.querySelectorAll('.card');
+    if (!cards.length) return;
+    txt += `\n[ ${(COLNAMES[zone.id]||zone.id).toUpperCase()} — ${cards.length} products ]\n${'─'.repeat(30)}\n`;
+    cards.forEach((c, i) => {
+      const name   = c.querySelector('.name').value  || '(no name)';
+      const qty    = c.querySelector('.qty').value   || '0';
+      const price  = c.querySelector('.price').value || '0';
+      const status = c.querySelector('.status').value;
       const imgUrl = getImageUrl(c);
-      txt += `${c.querySelector('.name').value} | Qty:${c.querySelector('.qty').value} | Price:${c.querySelector('.price').value} DH | ${c.querySelector('.status').value}\n`;
-      txt += `Image: ${imgUrl}\n\n`;
+      txt += `${i+1}. ${name}\n   Qty: ${qty}  |  Price: ${price} DH  |  ${status}\n   Image: ${imgUrl}\n\n`;
+      count++;
     });
   });
+  if (!count) { setSyncStatus('No products to export.', 'error'); return; }
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([txt], {type:'text/plain;charset=utf-8'}));
+  a.download = `perfume_inventory_${date}.txt`;
+  a.click();
   document.getElementById('exportBox').value = txt;
+  setSyncStatus(`Exported ${count} products ✓`, 'ok');
 }
 
 // ═══════ SEARCH ═══════
