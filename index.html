@@ -310,13 +310,17 @@ async function restorePrevious() {
 async function pullFromCloud(silent=false) {
   if (!silent) setSyncStatus('Loading from cloud...', 'loading');
   try {
-    const url = `${GH_RAW}/data.json?t=${Date.now()}`;
-    const r = await fetch(url);
+    // Use GitHub API (not raw CDN) so we always get the latest version instantly
+    const headers = { 'Accept': 'application/vnd.github+json' };
+    if (ghToken) headers['Authorization'] = 'token ' + ghToken;
+    const r = await fetch(`${GH_API}/data.json`, { headers });
     if (!r.ok) {
       if (!silent) setSyncStatus('No cloud data yet — push your products first.', 'error');
       return;
     }
-    const data = await r.json();
+    const file = await r.json();
+    const json = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
+    const data = JSON.parse(json);
     if (!data || !Object.keys(data).length) {
       if (!silent) setSyncStatus('Cloud is empty — push your products first.', 'error');
       return;
