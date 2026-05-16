@@ -1,22 +1,6 @@
 {
-  "mp8jgmscntkv2c": {
-    "name": "Club De Nuit",
-    "qty": "0",
-    "price": "0",
-    "status": "Available",
-    "column": "all",
-    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/club-de-nuit.jpg"
-  },
-  "mp8jgmscf74sas": {
-    "name": "Dior Homme Intense Dior",
-    "qty": "0",
-    "price": "0",
-    "status": "Available",
-    "column": "all",
-    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/dior-homme-intense-dior.jpg"
-  },
   "mp8jgmsckc4g06": {
-    "name": "Duo Fight Vulcan Feu Stronger With You",
+    "name": "NN",
     "qty": "0",
     "price": "0",
     "status": "Available",
@@ -663,16 +647,8 @@
     "column": "all",
     "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/afnan-9pm-elixir-extrait-de-parfum-10ml.jpg"
   },
-  "mp8jgmsakaa15y": {
-    "name": "3 Parfums Homme A 250 Dh",
-    "qty": "0",
-    "price": "0",
-    "status": "Available",
-    "column": "homme",
-    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/3-parfums-homme-a-250-dh.png"
-  },
   "mp8jgmsbnpjii2": {
-    "name": "Afnan 9pm Night Out Extrait De Parfum 10ml",
+    "name": "NN",
     "qty": "0",
     "price": "0",
     "status": "Available",
@@ -710,5 +686,29 @@
     "status": "Available",
     "column": "homme",
     "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/1-million-parfum-paco-rabanne.jpg"
+  },
+  "mp8jgmscntkv2c": {
+    "name": "NNNNN",
+    "qty": "250",
+    "price": "0",
+    "status": "Available",
+    "column": "homme",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/club-de-nuit.jpg"
+  },
+  "mp8jgmsakaa15y": {
+    "name": "3 Parfums Homme A 250 Dh",
+    "qty": "250",
+    "price": "0",
+    "status": "Available",
+    "column": "homme",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/3-parfums-homme-a-250-dh.png"
+  },
+  "mp8jgmscf74sas": {
+    "name": "Dior Homme Intense Dior",
+    "qty": "0",
+    "price": "0",
+    "status": "Available",
+    "column": "homme",
+    "imageUrl": "https://raw.githubusercontent.com/AmraniHub/perfume-inventory/main/products/dior-homme-intense-dior.jpg"
   }
 }
