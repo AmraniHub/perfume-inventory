@@ -570,15 +570,24 @@ function getImageUrl(card) {
   return src.split('?')[0];
 }
 
-function removeAll() {
+async function removeAll() {
   const count = document.querySelectorAll('.card').length;
   if (!count) { setSyncStatus('Board is already empty.', 'error'); return; }
-  if (!confirm(`Remove all ${count} products from the board? (Cloud data is not affected)`)) return;
+  if (!confirm(`Remove all ${count} products?\nThis will also clear the cloud so your friend sees the same empty board.`)) return;
   saveState();
   document.querySelectorAll('.dropzone').forEach(z => z.innerHTML = '');
   autoSave();
   updateStats();
-  setSyncStatus('Board cleared. Click Undo to restore.', 'ok');
+  setSyncStatus('Clearing cloud...', 'loading');
+  try {
+    if (!ghToken) await loadToken();
+    const existing = await ghGetFile('data.json');
+    const empty = btoa('{}');
+    await ghPutFile('data.json', empty, existing ? existing.sha : undefined);
+    setSyncStatus('All products removed from board and cloud ✓', 'ok');
+  } catch(e) {
+    setSyncStatus('Board cleared locally. Cloud update failed: ' + e.message, 'error');
+  }
 }
 
 function exportCSV() {
