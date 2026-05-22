@@ -78,6 +78,7 @@ textarea{width:100%;margin-top:20px;min-height:180px;background:#111;color:#fff;
   <button onclick="document.getElementById('imageUpload').click()" style="background:#2a1a4a!important;border-color:#6a3aaa!important;color:#c97ef7!important;font-weight:bold">📸 Upload Images</button>
   <button onclick="loadAllProducts()" style="background:#1a3020!important;border-color:#2d6040!important;color:#5ddb8a!important;font-weight:bold">📦 Load All 89 Products</button>
   <input type="text" id="search" placeholder="Search perfume...">
+  <button onclick="removeAll()" style="background:#3a1010!important;border-color:#8a2020!important;color:#f77e7e!important;font-weight:bold">🗑️ Remove All</button>
   <button onclick="undoAction()">Undo</button>
   <button onclick="redoAction()">Redo</button>
   <button onclick="exportCSV()">Export CSV</button>
@@ -567,6 +568,17 @@ function getImageUrl(card) {
   if (src.startsWith('data:')) return '(push to cloud first to get link)';
   // Strip cache-busting query param if present
   return src.split('?')[0];
+}
+
+function removeAll() {
+  const count = document.querySelectorAll('.card').length;
+  if (!count) { setSyncStatus('Board is already empty.', 'error'); return; }
+  if (!confirm(`Remove all ${count} products from the board? (Cloud data is not affected)`)) return;
+  saveState();
+  document.querySelectorAll('.dropzone').forEach(z => z.innerHTML = '');
+  autoSave();
+  updateStats();
+  setSyncStatus('Board cleared. Click Undo to restore.', 'ok');
 }
 
 function exportCSV() {
